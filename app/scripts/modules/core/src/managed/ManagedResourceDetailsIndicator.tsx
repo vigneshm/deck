@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactGA from 'react-ga';
-import { Dropdown, MenuItem } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 
 import { SETTINGS } from 'core/config/settings';
 import { HoverablePopover } from 'core/presentation';
@@ -86,19 +86,19 @@ export const ManagedResourceDetailsIndicator = ({
         <Dropdown
           className="resource-actions sp-margin-xs-bottom flex-pull-left"
           id="server-group-managed-resource-dropdown"
-          pullRight={true}
+          alignRight={true}
         >
           <Dropdown.Toggle className="btn btn-sm btn-default dropdown-toggle">Resource Actions</Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu">
             {!application.isManagementPaused && (
-              <MenuItem onClick={() => toggleResourcePause(resourceSummary, application)}>
+              <Dropdown.Item onClick={() => toggleResourcePause(resourceSummary, application)}>
                 {isPaused ? 'Resume ' : 'Pause '} Management
-              </MenuItem>
+              </Dropdown.Item>
             )}
             {application.isManagementPaused && (
-              <MenuItem disabled={true} onClick={allowNavigation}>
+              <Dropdown.Item disabled={true} onClick={allowNavigation}>
                 Resume Management <HelpField content={appPausedHelpContent} />
-              </MenuItem>
+              </Dropdown.Item>
             )}
             <li>
               <a

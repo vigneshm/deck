@@ -84,7 +84,7 @@ export class CopyToClipboard extends React.Component<ICopyToClipboardProps, ICop
     }
   };
 
-  private renderTooltip(children: React.ReactNode): React.ReactNode {
+  private renderTooltip(children: React.ReactElement): React.ReactNode {
     const { toolTip, text = '' } = this.props;
     const { tooltipCopy, shouldUpdatePosition } = this.state;
 

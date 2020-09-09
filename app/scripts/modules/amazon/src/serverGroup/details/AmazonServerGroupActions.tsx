@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, MenuItem, Tooltip } from 'react-bootstrap';
+import { Dropdown, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { filter, find, get, orderBy } from 'lodash';
 
 import {
@@ -37,7 +37,7 @@ export class AmazonServerGroupActionsResize extends React.Component<IAmazonResiz
   };
 
   public render(): JSX.Element {
-    return <MenuItem onClick={this.resizeServerGroup}>Resize</MenuItem>;
+    return <Dropdown.Item onClick={this.resizeServerGroup}>Resize</Dropdown.Item>;
   }
 }
 
@@ -311,13 +311,16 @@ export class AmazonServerGroupActions extends React.Component<IAmazonServerGroup
             </ManagedMenuItem>
           )}
           {this.isEnableLocked() && (
-            <li className="disabled">
-              <Tooltip value="Cannot enable this server group until resize operation completes" placement="left">
+            <OverlayTrigger
+              overlay={<Tooltip id="">Cannot enable this server group until resize operation completes</Tooltip>}
+              placement="left"
+            >
+              <li className="disabled">
                 <a>
                   <span className="small glyphicon glyphicon-lock" /> Enable
                 </a>
-              </Tooltip>
-            </li>
+              </li>
+            </OverlayTrigger>
           )}
           <ManagedMenuItem resource={serverGroup} application={app} onClick={this.destroyServerGroup}>
             Destroy

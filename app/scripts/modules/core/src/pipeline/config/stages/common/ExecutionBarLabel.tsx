@@ -66,7 +66,7 @@ export class ExecutionBarLabel extends React.Component<IExecutionBarLabelProps, 
     );
     return (
       <OverlayTrigger placement="top" overlay={tooltip}>
-        {this.props.children}
+        {() => this.props.children}
       </OverlayTrigger>
     );
   };

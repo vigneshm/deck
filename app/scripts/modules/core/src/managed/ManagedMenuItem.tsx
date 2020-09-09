@@ -1,5 +1,5 @@
 import React from 'react';
-import { MenuItem } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 import { $q } from 'ngimport';
 import { IPromise } from 'angular';
 
@@ -28,5 +28,5 @@ export const ManagedMenuItem = ({ resource, application, onClick, children }: IM
       isNotManaged && onClick();
     });
 
-  return <MenuItem onClick={handleClick}>{children}</MenuItem>;
+  return <Dropdown.Item onClick={handleClick}>{children}</Dropdown.Item>;
 };

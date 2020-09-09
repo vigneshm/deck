@@ -1,5 +1,6 @@
 import React from 'react';
-import { Dropdown, MenuItem, Glyphicon } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
+import { BsFillQuestionCircleFill } from 'react-icons/bs';
 import { UISref } from '@uirouter/react';
 
 import { SETTINGS } from 'core/config';
@@ -12,24 +13,24 @@ const VERSIONS_URL = 'https://www.spinnaker.io/community/releases/versions/';
 
 const Feedback = () =>
   SETTINGS.feedback && SETTINGS.feedback.url ? (
-    <MenuItem href={SETTINGS.feedback.url} target="_blank">
+    <Dropdown.Item href={SETTINGS.feedback.url} target="_blank">
       <i className={SETTINGS.feedback.icon || 'fa fa-envelope'} />
       &nbsp; {SETTINGS.feedback.text || 'Send feedback'}
-    </MenuItem>
+    </Dropdown.Item>
   ) : null;
 
 const AdditionalHelpLinks = () =>
   SETTINGS.additionalHelpLinks && SETTINGS.additionalHelpLinks.length ? (
     <>
       {SETTINGS.additionalHelpLinks.map((helpLink, i) => (
-        <MenuItem href={helpLink.url} key={i} target="_blank">
+        <Dropdown.Item href={helpLink.url} key={i} target="_blank">
           {helpLink.icon ? (
             <span>
               <i className={helpLink.icon} /> &nbsp;
             </span>
           ) : null}
           {helpLink.text || `Additional Help`}
-        </MenuItem>
+        </Dropdown.Item>
       ))}
     </>
   ) : null;
@@ -43,29 +44,29 @@ const Version = () => {
   const CHANGELOG_URL = `${VERSIONS_URL}${CHANGELOG_PATH}`;
 
   return (
-    <MenuItem href={CHANGELOG_URL} target="_blank">
+    <Dropdown.Item href={CHANGELOG_URL} target="_blank">
       Spinnaker {SETTINGS.version}
-    </MenuItem>
+    </Dropdown.Item>
   );
 };
 
 export const HelpMenu = () => {
   return (
     <li className="help-menu">
-      <Dropdown id="help-menu-dropdown" pullRight={true}>
-        <Dropdown.Toggle className="hidden-lg" noCaret={true}>
-          <Glyphicon glyph="question-sign" />
+      <Dropdown id="help-menu-dropdown" alignRight={true}>
+        <Dropdown.Toggle className="hidden-lg">
+          <BsFillQuestionCircleFill />
         </Dropdown.Toggle>
-        <Dropdown.Menu>
+        <Dropdown.Menu as="ul">
           <Feedback />
           <AdditionalHelpLinks />
-          <MenuItem href={DOCS_URL} target="_blank">
+          <Dropdown.Item href={DOCS_URL} target="_blank">
             Docs
-          </MenuItem>
-          <MenuItem divider={true} />
-          <MenuItem href={COMMUNITY_URL} target="_blank">
+          </Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item href={COMMUNITY_URL} target="_blank">
             Community Resources
-          </MenuItem>
+          </Dropdown.Item>
           <Version />
           {SETTINGS.feature.pagerDuty && (
             <li role="presentation">
@@ -79,19 +80,19 @@ export const HelpMenu = () => {
         </Dropdown.Menu>
       </Dropdown>
 
-      <Dropdown id="help-menu-dropdown-large" pullRight={true}>
-        <Dropdown.Toggle className="hidden-xs hidden-sm hidden-md" noCaret={true}>
-          <Glyphicon glyph="question-sign" /> Help
+      <Dropdown id="help-menu-dropdown-large" alignRight={true}>
+        <Dropdown.Toggle className="hidden-xs hidden-sm hidden-md">
+          <BsFillQuestionCircleFill /> Help
         </Dropdown.Toggle>
-        <Dropdown.Menu>
+        <Dropdown.Menu as="ul">
           <Feedback />
           <AdditionalHelpLinks />
-          <MenuItem href={DOCS_URL} target="_blank">
+          <Dropdown.Item href={DOCS_URL} target="_blank">
             Docs
-          </MenuItem>
-          <MenuItem href={COMMUNITY_URL} target="_blank">
+          </Dropdown.Item>
+          <Dropdown.Item href={COMMUNITY_URL} target="_blank">
             Community Resources
-          </MenuItem>
+          </Dropdown.Item>
           <Version />
           {SETTINGS.feature.pagerDuty && (
             <li role="presentation">

@@ -1097,6 +1097,14 @@ textarea.code {
   }
 }
 
+.modal.show {
+  opacity: 1;
+
+  .modal-dialog {
+    transform: none;
+  }
+}
+
 .btn-light {
   border: none;
   background: transparent;
@@ -1390,25 +1398,40 @@ ul.checkmap {
   color: var(--color-accent);
 }
 
+.dropdown-item {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  color: var(--color-mineshaft);
+  white-space: nowrap;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background-color: var(--color-alabaster);
+    text-decoration: none;
+    color: var(--color-mineshaft);
+  }
+}
+
 // duplicated from bootstrap core
 // needed to render components in dropdowns correctly
 .dropdown-menu {
   z-index: var(--layer-critical);
   li {
     > a {
-      display: block;
-      padding: 3px 20px;
-      clear: both;
-      color: var(--color-mineshaft);
-      white-space: nowrap;
-      cursor: pointer;
-      &:hover,
-      &:focus {
-        background-color: var(--color-alabaster);
-        text-decoration: none;
-        color: var(--color-mineshaft);
-      }
+      .dropdown-item();
     }
+  }
+
+  .dropdown-item {
+    .dropdown-item();
+  }
+
+  .dropdown-divider {
+    background-color: var(--color-seashell);
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
   }
 }
 

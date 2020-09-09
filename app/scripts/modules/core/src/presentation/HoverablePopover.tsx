@@ -165,6 +165,7 @@ export class HoverablePopover extends React.Component<IHoverablePopoverProps, IH
           animation={animation}
           placement={placementOverride || placement}
           target={this.targetRef.current}
+          // @ts-ignore
           container={container}
           shouldUpdatePosition={true}
         >
@@ -214,6 +215,7 @@ class PopoverOffset extends React.Component<IPopoverOffsetProps, IPopoverOffsetS
     };
 
     const desiredPercent = parsePercent(offsetPercent);
+    // @ts-ignore
     const currentPercent = parsePercent(props.arrowOffsetLeft as string);
     const deltaPercent = desiredPercent - currentPercent;
 

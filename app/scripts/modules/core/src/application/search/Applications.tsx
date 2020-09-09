@@ -1,6 +1,5 @@
 import React from 'react';
 import { isEqual } from 'lodash';
-import { SelectCallback } from 'react-bootstrap';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 import { IAccount } from 'core/account';
@@ -136,7 +135,7 @@ export class Applications extends React.Component<{}, IApplicationsState> {
     const { applications, pagination, errorState } = this.state;
     const { maxSize, currentPage, itemsPerPage } = pagination;
     const currentSort = this.sort$.value;
-    const changePage: SelectCallback = (page: any) => {
+    const changePage = (page: number) => {
       return this.pagination$.next({ ...pagination, currentPage: page });
     };
 

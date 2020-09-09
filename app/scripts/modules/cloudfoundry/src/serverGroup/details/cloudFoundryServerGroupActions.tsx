@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Dropdown, Tooltip } from 'react-bootstrap';
+import { Dropdown, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { filter, find, get, orderBy } from 'lodash';
 
 import {
@@ -321,13 +321,16 @@ export class CloudFoundryServerGroupActions extends React.Component<ICloudFoundr
             </li>
           )}
           {this.isEnableLocked() && (
-            <li className="disabled">
-              <Tooltip value="Cannot enable this server group until resize operation completes" placement="left">
+            <OverlayTrigger
+              overlay={<Tooltip id="">Cannot enable this server group until resize operation completes</Tooltip>}
+              placement="left"
+            >
+              <li className="disabled">
                 <a>
                   <span className="small glyphicon glyphicon-lock" /> Enable
                 </a>
-              </Tooltip>
-            </li>
+              </li>
+            </OverlayTrigger>
           )}
           <li>
             <a className="clickable" onClick={this.destroyServerGroup}>

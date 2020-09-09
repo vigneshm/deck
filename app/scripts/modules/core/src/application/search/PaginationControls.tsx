@@ -1,8 +1,8 @@
 import React from 'react';
-import { SelectCallback, Pagination } from 'react-bootstrap';
+import { Pagination } from 'react-bootstrap';
 import { createUltimatePagination, ITEM_TYPES } from 'react-ultimate-pagination';
 export interface IPaginationControlsProps {
-  onPageChanged: SelectCallback;
+  onPageChanged: (page: number) => void;
   activePage: number;
   totalPages: number;
 }
@@ -22,6 +22,7 @@ export const PaginationControls = ({ onPageChanged, activePage, totalPages }: IP
   );
 
   const Paging = createUltimatePagination({
+    // @ts-ignore
     WrapperComponent: Pagination,
     itemTypeToComponent: {
       [ITEM_TYPES.PAGE]: ({ value, isActive, onClick }) => <Item value={value} isActive={isActive} onClick={onClick} />,
@@ -40,5 +41,9 @@ export const PaginationControls = ({ onPageChanged, activePage, totalPages }: IP
       ),
     },
   });
-  return <Paging onChange={onPageChanged} currentPage={activePage} totalPages={totalPages} />;
+  const onPageChange = React.useCallback(
+    (e: React.SyntheticEvent<MouseEvent>) => onPageChanged(parseInt((e.target as any).text)),
+    [],
+  );
+  return <Paging onChange={onPageChange} currentPage={activePage} totalPages={totalPages} />;
 };

@@ -90,7 +90,7 @@ export class InsightMenu extends React.Component<IInsightMenuProps, IInsightMenu
       <div id="insight-menu">
         {createProject && (
           <Button
-            bsStyle={createApp ? 'default' : 'primary'}
+            variant={createApp ? 'default' : 'primary'}
             href="javascript:void(0)"
             onClick={this.createProject}
             style={{ marginRight: createApp ? '5px' : '' }}
@@ -101,7 +101,7 @@ export class InsightMenu extends React.Component<IInsightMenuProps, IInsightMenu
 
         {createApp && (
           <Button
-            bsStyle="primary"
+            variant="primary"
             href="javascript:void(0)"
             onClick={this.createApplication}
             style={{ marginRight: refreshCaches ? '5px' : '' }}

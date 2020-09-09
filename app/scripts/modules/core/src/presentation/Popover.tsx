@@ -29,7 +29,7 @@ export class Popover extends React.Component<IPopoverProps> {
 
     return (
       <OverlayTrigger placement={placement} overlay={popover}>
-        {children}
+        {() => children}
       </OverlayTrigger>
     );
   }

@@ -3,7 +3,7 @@ import React from 'react';
 import '@uirouter/rx';
 import { Transition } from '@uirouter/core';
 import { UISref, UIView } from '@uirouter/react';
-import { Dropdown, MenuItem } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 import { Subject } from 'rxjs';
 
 import { ReactInjector } from 'core/reactShims';
@@ -102,19 +102,21 @@ export class ProjectHeader extends React.Component<IProjectHeaderProps, IProject
             <h2>
               <span className="project-name">{project.name} / </span>
               <div className="project-view">
-                <Dropdown id="project" pullRight={true} componentClass={'div'} onToggle={this.handleDropdownToggle}>
-                  <SpanDropdownTrigger bsRole="toggle" className="clickable">
-                    {title} <span className="small glyphicon glyphicon-chevron-down" style={chevronStyle} />
-                  </SpanDropdownTrigger>
+                <Dropdown id="project" alignRight={true} as={'div'} onToggle={this.handleDropdownToggle}>
+                  <Dropdown.Toggle as={SpanDropdownTrigger}>
+                    <span className="clickable">
+                      {title} <span className="small glyphicon glyphicon-chevron-down" style={chevronStyle} />
+                    </span>
+                  </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <UISref to=".dashboard">
-                      <MenuItem onClick={closeDropdown}>Project Dashboard</MenuItem>
+                      <Dropdown.Item onClick={closeDropdown}>Project Dashboard</Dropdown.Item>
                     </UISref>
-                    <MenuItem divider={true} />
+                    <Dropdown.Divider />
                     {config.applications &&
                       config.applications.sort().map(app => (
                         <UISref key={app} to=".application.insight.clusters" params={{ application: app }}>
-                          <MenuItem onClick={closeDropdown}> {app} </MenuItem>
+                          <Dropdown.Item onClick={closeDropdown}> {app} </Dropdown.Item>
                         </UISref>
                       ))}
                   </Dropdown.Menu>

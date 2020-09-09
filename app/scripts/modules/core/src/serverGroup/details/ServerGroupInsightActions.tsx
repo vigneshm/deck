@@ -21,7 +21,7 @@ export class ServerGroupInsightActions extends React.Component<{ serverGroup: IS
 
     if (hasInsightActions) {
       return (
-        <Dropdown className="dropdown" id="server-group-insight-dropdown" pullRight={true}>
+        <Dropdown className="dropdown" id="server-group-insight-dropdown" alignRight={true}>
           <Dropdown.Toggle className="btn btn-sm btn-default dropdown-toggle">Insight</Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu">
             {serverGroup.insightActions.map(action => (
